@@ -1,21 +1,21 @@
 ----- VTP (Virtual Trunking Protokol) SETUP -----
 
----- A Vtp protokol bizosítja, hogy több switch-en keresztül ugyanazok a vlan-ok létezzenek.
----- A Vtp protokol CSAK a vlan-ok létezését biztosítja.
+--- A Vtp protokol bizosítja, hogy több switch-en keresztül ugyanazok a vlan-ok létezzenek.
+--- A Vtp protokol CSAK a vlan-ok létezését biztosítja.
 
----- A Vtp serverek és kliensek domain használatával azonosítják egymást.
+--- A Vtp serverek és kliensek domain használatával azonosítják egymást.
 
----- Vtp csomagokat csak trunk interface-eken lehet továbbítani.
+--- Vtp csomagokat csak trunk interface-eken lehet továbbítani.
 
----- Vtp módok
------| server: A vtp server fogja továbbítani a vlan-okat a vtp kliensek-re.
------|-------- Több vtp server is lehet egy domain-en belül.
------|-------- Ebben az esetben ha az egyik vtp server-ben változás történik, akkor a többi vtp server-ben is megfog jelenni a változás.
+--- Vtp módok
+|----- server: A vtp server fogja továbbítani a vlan-okat a vtp kliensek-re.
+|------------- Több vtp server is lehet egy domain-en belül.
+|------------- Ebben az esetben ha az egyik vtp server-ben változás történik, akkor a többi vtp server-ben is megfog jelenni a változás.
 
------| client: A vtp kliens lekérdezi a vtp server-en lévő vlan-okat és autómatikusan létrehozza őket.
------|-------- Vtp kliensek nem tudnak új vlan-t létrehozni.
+|----- client: A vtp kliens lekérdezi a vtp server-en lévő vlan-okat és autómatikusan létrehozza őket.
+|------------- Vtp kliensek nem tudnak új vlan-t létrehozni.
 
------| transparent: Ezek az eszközök tovább irányítják a vtp csomagokat trunk interface-eken.
+|----- transparent: Ezek az eszközök tovább irányítják a vtp csomagokat trunk interface-eken.
 
 1. Példa konfiguráció vtp server-nek (
     -> vtp domain pataky.hu
