@@ -1,28 +1,28 @@
-##### 2 VLAN-OS HÁLÓZAT #####
-### VLAN 10: 192.168.0.0 /24
-### VLAN 20: 172.16.0.0 /24
+----- 2 VLAN-OS HÁLÓZAT -----
+--- VLAN 10: 192.168.0.0 /24
+--- VLAN 20: 172.16.0.0 /24
 
 1. Létrehozzuk a vlan-okat (
     -> vlan 10
     -> name LILA
     -> vlan 20
     -> name KEK
-    -> vlan 333 // Általában távoli elérésre szokták használni (pl.: ssh, telnet) \\
+    -> vlan 333 \\ Általában távoli elérésre szokták használni (pl.: ssh, telnet) \\
     -> name MANAGED
-    -> vlan 666 // A nem használt interface-eket ide ajánlott berakni bisztonsági okok miatt \\
+    -> vlan 666 \\ A nem használt interface-eket ide ajánlott berakni bisztonsági okok miatt \\
     -> name TRASH
 )
 
 2. Hozzárendeljük az összes interface-t a 666-os vlan-hoz és lekapcsoljuk őket (
-    -> interface range fastEthernet 0/1-24, gigabitEthernet 0/1-2 // Minden interface-t megnyitunk (Ez a példa 2960-os switch modellre utal) \\
+    -> interface range fastEthernet 0/1-24, gigabitEthernet 0/1-2 \\ Minden interface-t megnyitunk (Ez a példa 2960-os switch modellre utal) \\
     -> switchport mode access
-    -> switchport access vlan 666 // Itt rendeljük hozzá a interface-t a 666-os vlan-hoz \\
+    -> switchport access vlan 666 \\ Itt rendeljük hozzá a interface-t a 666-os vlan-hoz \\
     -> shutdown
 )
 
 3. Hozzárendeljük az interface-eket a megfelelő vlan-hoz (
-    -> interface range fastEthernet 0/1-6 // Belépünk az első 6 fastEthernet interface-be (0/1 - 0/6)
-    -> switchport access vlan 10 // A interface-eket Hozzárendeljük a 10-es vlan-hoz \\
+    -> interface range fastEthernet 0/1-6 \\ Belépünk az első 6 fastEthernet interface-be (0/1 - 0/6)
+    -> switchport access vlan 10 \\ A interface-eket Hozzárendeljük a 10-es vlan-hoz \\
     -> no shutdown
     -> interface range fastEthernet 0/13-18
     -> switchport access vlan 20
@@ -32,15 +32,15 @@
 4. Létrehozzuk a trunk interface-t (
     -> interface gigabitEthernet 0/2
     -> switchport mode trunk
-    -> switchport trunk native vlan 333 // Átállítjuk a native vlan opciót a 333-as vlan-ra \\
-    -> switchport trunk allowed vlan 10,20,333 // Megadjuk a megengedett vlan-okat \\
+    -> switchport trunk native vlan 333 \\ Átállítjuk a native vlan opciót a 333-as vlan-ra \\
+    -> switchport trunk allowed vlan 10,20,333 \\ Megadjuk a megengedett vlan-okat \\
     -> no shutdown
 )
 
 *5. Router konfiguráció (
-    -> interface gigabitEthernet0/1.10 // Létrehozzuk a .10-es virtuális interface-t (Ajánlott a vlan id után elnevezni) \\
-    -> encapsulation dot1Q 10 // A becsomagolási protokolt beállítjuk "dot1Q"-ra és hozzá rendeljük az interface-t a 10-es vlan-hoz \\
-    -> ip address 192.168.0.254 255.255.255.0 // Ez az ip cím lesz a default gateway az adott hálózatban \\
+    -> interface gigabitEthernet0/1.10 \\ Létrehozzuk a .10-es virtuális interface-t (Ajánlott a vlan id után elnevezni) \\
+    -> encapsulation dot1Q 10 \\ A becsomagolási protokolt beállítjuk "dot1Q"-ra és hozzá rendeljük az interface-t a 10-es vlan-hoz \\
+    -> ip address 192.168.0.254 255.255.255.0 \\ Ez az ip cím lesz a default gateway az adott hálózatban \\
     -> no shutdown
     -> interface gigabitEthernet0/1.20
     -> encapsulation dot1Q 20
@@ -54,22 +54,22 @@
         -> name LILA
         -> vlan 20
         -> name KEK
-        -> vlan 333 // Általában távoli elérésre szokták használni (pl.: ssh, telnet) \\
+        -> vlan 333 \\ Általában távoli elérésre szokták használni (pl.: ssh, telnet) \\
         -> name MANAGED
-        -> vlan 666 // A nem használt vlan-okat ide ajánlott berakni bisztonsági okok miatt \\
+        -> vlan 666 \\ A nem használt vlan-okat ide ajánlott berakni bisztonsági okok miatt \\
         -> name TRASH
     )
 
     6.2 Hozzárendeljük az összes interface-t a 666-os vlan-hoz és lekapcsoljuk őket (
-        -> interface range fastEthernet 0/1-24, gigabitEthernet 0/1-2 // Minden interface-t megnyitunk (Ez a példa 3560-os multilayer switch modellre utal) \\
+        -> interface range fastEthernet 0/1-24, gigabitEthernet 0/1-2 \\ Minden interface-t megnyitunk (Ez a példa 3560-os multilayer switch modellre utal) \\
         -> switchport mode access
-        -> switchport access vlan 666 // Itt rendeljük hozzá az interface-t a 666-os vlan-hoz \\
+        -> switchport access vlan 666 \\ Itt rendeljük hozzá az interface-t a 666-os vlan-hoz \\
         -> shutdown
     )
 
     6.3 Ip címmet adunk a megfelelő vlan interface-eken (
         -> interface vlan 10
-        -> ip address 192.168.0.254 255.255.255.0 // Ez lesz a 10-es vlan default gateway címe \\
+        -> ip address 192.168.0.254 255.255.255.0 \\ Ez lesz a 10-es vlan default gateway címe \\
         -> no shutdown
         -> interface vlan 20
         -> ip address 172.16.0.254 255.255.255.0
