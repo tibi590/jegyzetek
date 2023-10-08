@@ -1,0 +1,24 @@
+----- TELNET SETUP -----
+--- A Telnet protokol Távoli elérést biztosít (Nincs titkosítva).
+
+1. Telnet setup (
+    1.1 Lokális felhasználók létrehozása (
+        -> username admin password admin
+    )
+
+    1.2 Telnet engedélyezése (
+        -> line vty 0 15
+        -> transport input telnet
+        -> login local
+    ) \\ Ha router-en akarsz ssh-t beállítani, akkor az 1.3-as pont-ot nem kell megcsinálni. Ebben az esetben a default-gateway-t kell használni mint elérési pont \\
+
+    1.3 Elérési pont készítése (
+        -> interface vlan 1 \\ NEM ajánlott az 1-es vlan-t használni \\
+        -> ip address 192.168.0.254 255.255.255.0 \\ Ezen az ip címen lehet elérni az ssh szolgáltatást \\
+        -> no shu
+    )
+)
+
+2. Példa telnet használat (
+    -> telnet 192.168.0.254 \\ Switch esetén a vlan interface ip címét, de router esetén a default-gateway-t kell használni \\
+)
