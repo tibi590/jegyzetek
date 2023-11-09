@@ -41,10 +41,10 @@
     -> interface gigabitEthernet0/1.10 \\ Létrehozzuk a .10-es virtuális interface-t (Ajánlott a vlan id után elnevezni) \\
     -> encapsulation dot1Q 10 \\ A becsomagolási protokolt beállítjuk "dot1Q"-ra és hozzá rendeljük az interface-t a 10-es vlan-hoz \\
     -> ip address 192.168.0.254 255.255.255.0 \\ Ez az ip cím lesz a default gateway az adott hálózatban \\
-    -> no shutdown
     -> interface gigabitEthernet0/1.20
     -> encapsulation dot1Q 20
     -> ip address 172.16.0.254 255.255.255.0
+    -> interface gigabitEthernet0/1 \\ Belépünk a fizikai interface-be és felkapcsoljuk \\
     -> no shutdown
 )
 
