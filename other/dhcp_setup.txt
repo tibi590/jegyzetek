@@ -1,0 +1,24 @@
+----- DHCP -----
+
+--- Dynamic host configuration protocol
+
+--- Hálozattal kapcsolatos infók
+|-----: Network -> 192.168.0.0 /24
+|-----: Dns-server -> 8.8.8.8
+|-----: Default-router -> 192.168.0.1 
+|-----: Domain-name -> pataky.hu
+
+
+1. Dhcp konfiguráció (
+    1.1 Dhcp pool létrehozása (
+        ip dhcp pool TESZT
+        network 192.168.0.0 255.255.255.0 // Hálózat címe (KELL) //
+        default-router 192.168.0.1 // Alapértelmezett átjáró (KELL) // 
+        dns-server 8.8.8.8 // DNS szerver (NEM KELL) //
+        domain-name pataky.hu // Domain név (NEM KELL) //
+    )
+
+    1.2 Ip cím kitíltás (
+        ip dhcp excluded-address 192.168.0.1 192.168.0.100 // 1-től 100-ig nem oszt ki ip címet. Jelenlegi ip címek: 101-254 // 
+    ) (NEM KELL)
+)
