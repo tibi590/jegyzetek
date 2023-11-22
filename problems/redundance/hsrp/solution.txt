@@ -69,7 +69,7 @@
         no shutdown
         exit
 
-        interface portChannel 1
+        interface port-channel 1
         switchport mode trunk
         switchport trunk native vlan 333
         switchport trunk allowed vlan 10,20,333
