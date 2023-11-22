@@ -156,7 +156,7 @@
 
 4. Telnel konfigurálása (
     4.1 Switch1 (FENT) előkészítése (
-        ip default-router 192.168.50.254
+        ip default-gateway 192.168.50.254
         
         interface vlan 333
         ip address 192.168.50.3 255.255.255.0 
@@ -164,7 +164,7 @@
     )
 
     4.2 Switch2 (LENT) előkészítése (
-        ip default-router 192.168.50.254
+        ip default-gateway 192.168.50.254
         
         interface vlan 333
         ip address 192.168.50.4 255.255.255.0 
