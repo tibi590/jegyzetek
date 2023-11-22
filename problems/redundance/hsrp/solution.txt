@@ -65,14 +65,14 @@
         interface range fastEthernet 0/23-24
         switchport mode trunk
         switchport trunk native vlan 333
-        switchport truck allowed vlan 10,20,333
+        switchport trunk allowed vlan 10,20,333
         no shutdown
         exit
 
         interface portChannel 1
         switchport mode trunk
         switchport trunk native vlan 333
-        switchport truck allowed vlan 10,20,333
+        switchport trunk allowed vlan 10,20,333
     )
 
     2.3 Pc-k felöli interfacek (
