@@ -1,0 +1,64 @@
+1. Tacacs+ konfigurálása az R2 es routeren (
+    1.1 Lokálisan tárolt felhasználó létrehozása (
+       username Admin2 secret admin2pa55 \\ Arra az esetre van beállítva ha nem elérhető a tacacs+ server \\ 
+    )
+
+    1.2 Tacacs+ server információk beállítása (
+        tacacs-server host 192.168.2.2 \\ Tacacs+ server ip címe \\
+        tacacs-server key tacacspa55 \\ Tacacs+ server kulcsa \\
+    )
+
+    1.3 AAA konfigurálása (
+        aaa new-model \\ Aktiváljuk az AAA hitelesítést \\
+        aaa authentication login default group tacacs+ local
+        \\\\\\\\\\\\\\\\\\\\\\\\
+        \\ kommand magyarázat:
+        \\   -aaa authentication -> Új hitelesítési listát hoz létre
+        \\   -login -> Ez a listát belejentkezésre lesz használva (ui.: ezt nem tudom normálisan megfogalmazni)
+        \\   -default -> Ez a lista lesz az alapértelmezett
+        \\
+        \\   !! Ezen a ponton túl a hitelesítési lista elemeit kell felsorolni (Sorrendben) !!
+        \\
+        \\   -group tacacs+ -> A "group" csak azt mondja, hogy távoli hitelesítés lesz. A "tacacs+" a server tipust jelzi
+        \\   -local -> A "local" a lokálisan tárolt felhasználókat (username Admin2 secret admin2pa55) fogja használni.
+        \\   !! A "local" nem nézi a kis-nagy betüket. Ha nagybetü pontosság kell akkor használj "local-case" kommandot !!
+        \\\\\\\\\\\\\\\\\\\\\\\\
+    )
+
+    1.4 Console vonal AAA konfigurálása (
+        login authentication default \\ Beállítjuk hogy a hitelesítés az alapértelmezett lista alapján működjön \\
+    )
+)
+
+2. Tacacs+ konfigurálása az R2 es routeren (
+    2.1 Lokálisan tárolt felhasználó létrehozása (
+       username Admin3 secret admin3pa55 \\ Arra az esetre van beállítva ha nem elérhető a radius server \\ 
+    )
+
+    2.2 Radius server információk beállítása (
+        radius server NAME \\ Új radius server beállítása és elnevezése \\
+         address ipv4 192.168.3.2 \\ Radius server ip címe \\
+         key radiuspa55 \\ Radius server kulcsa \\
+    )
+
+    2.3 AAA konfigurálása (
+        aaa new-model \\ Aktiváljuk az AAA hitelesítést \\
+        aaa authentication login default group radius local
+        \\\\\\\\\\\\\\\\\\\\\\\\
+        \\ kommand magyarázat:
+        \\   -aaa authentication -> Új hitelesítési listát hoz létre
+        \\   -login -> Ez a listát belejentkezésre lesz használva (ui.: ezt nem tudom normálisan megfogalmazni)
+        \\   -default -> Ez a lista lesz az alapértelmezett
+        \\
+        \\   !! Ezen a ponton túl a hitelesítési lista elemeit kell felsorolni (Sorrendben) !!
+        \\
+        \\   -group radius -> A "group" csak azt mondja, hogy távoli hitelesítés lesz. A "radius" a server tipust jelzi
+        \\   -local -> A "local" a lokálisan tárolt felhasználókat (username Admin2 secret admin2pa55) fogja használni.
+        \\   !! A "local" nem nézi a kis-nagy betüket. Ha nagybetü pontosság kell akkor használj "local-case" kommandot !!
+        \\\\\\\\\\\\\\\\\\\\\\\\
+    )
+
+    2.4 Console vonal AAA konfigurálása (
+        login authentication default \\ Beállítjuk hogy a hitelesítés az alapértelmezett lista alapján működjön \\
+    )
+)
